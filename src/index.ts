@@ -2,6 +2,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
 import { z } from "zod";
+import { env as cfEnv } from "cloudflare:workers";
 import { SearchBrowseService } from "./services/search-browse.js";
 import yaml from "js-yaml";
 import { Logger } from "./utils/logger.js";
@@ -24,14 +25,15 @@ export class MyMCP extends McpAgent {
 	}
 
 	async init() {
-		const env = this.env as any;
+		// Try accessing env from multiple sources to ensure compatibility
+		const env = (this.env || cfEnv) as any;
 
 		const minimaxApiKey = env.MINIMAX_API_KEY;
 		const serperApiKey = env.SERPER_API_KEY;
 		const jinaApiKey = env.JINA_API_KEY;
 
 		if (!minimaxApiKey || !serperApiKey) {
-			Logger.error(`[AGENT] Missing credentials. MINIMAX_API_KEY: ${minimaxApiKey ? "SET" : "MISSING"}, SERPER_API_KEY: ${serperApiKey ? "SET" : "MISSING"}`);
+			Logger.error(`[AGENT] Missing credentials. MINIMAX_API_KEY: ${minimaxApiKey ? "SET" : "MISSING"}, SERPER_API_KEY: ${serperApiKey ? "SET" : "MISSING"}, JINA_API_KEY: ${jinaApiKey ? "SET" : "MISSING"}`);
 		}
 
 		const service = new SearchBrowseService({
