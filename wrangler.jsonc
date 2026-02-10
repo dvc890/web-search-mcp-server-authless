@@ -4,13 +4,22 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "web-search-mcp-server-authless",
+	"name": "minimax-search-worker",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-03-10",
-	"compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"vars": {
+		"MINIMAX_API_KEY": "",
+		"SERPER_API_KEY": "",
+		"JINA_API_KEY": ""
+	},
 	"migrations": [
 		{
-			"new_sqlite_classes": ["MyMCP"],
+			"new_sqlite_classes": [
+				"MyMCP"
+			],
 			"tag": "v1"
 		}
 	],
