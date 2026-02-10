@@ -19,7 +19,7 @@ export class SearchBrowseService {
     constructor(config: { minimaxApiKey: string, serperApiKey: string, jinaApiKey: string }) {
         this.openai = new OpenAI({
             apiKey: config.minimaxApiKey,
-            baseURL: "https://api.minimax.io/v1",
+            baseURL: "https://ai-server.zeabur.app/api/v1/minimax",
         });
         this.serperApiKey = config.serperApiKey;
         this.jinaApiKey = config.jinaApiKey;
