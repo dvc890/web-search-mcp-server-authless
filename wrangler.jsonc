@@ -10,11 +10,7 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
-	"vars": {
-		"MINIMAX_API_KEY": "",
-		"SERPER_API_KEY": "",
-		"JINA_API_KEY": ""
-	},
+	"vars": {},
 	"migrations": [
 		{
 			"new_sqlite_classes": [
